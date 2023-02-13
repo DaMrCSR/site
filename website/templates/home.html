@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content
+  %}
+  
+  <h1 align="center" style = "color:white";>Notes</h1>
+  <ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item" contenteditable="true">
+      {{ note.data }}
+      <button  id = "deleteX" type="button" class="close" onClick="openModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <button type="button" class="close" onClick="hideX()">
+        <span aria-hidden="true">&curren;	</span>
+      </button>
+      <small class="text-muted">{{ note.date }}</small>
+      
+    
+    <div class="modal fade" id="areyousureModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are you sure you wish to delete this note?</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            You won't be able to recover it
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger" onClick="deleteNote({{ note.id }})" data-dismiss="modal">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    </li>
+ 
+    {% endfor %}
+  </ul>
+    <form method="POST">
+      <textarea name="note" id="note" class="form-control"></textarea>
+      <br />
+      <div align="center">
+        <button type="submit" class="btn btn-light">Add Note</button>
+      </div>
+    </form>
+  </ul>
+
+  {% endblock %}
+  
