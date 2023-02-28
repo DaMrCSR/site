@@ -7,8 +7,8 @@ function deleteNote(noteId) {
     });
   }
   
-  function hideX() {
-    var x = document.getElementById("deleteX");
+  function hideX(btn) {
+    var x = btn.previousElementSibling;
     if (x.style.display === "none") {
       x.style.display = "block";
     } else {
@@ -19,4 +19,3 @@ function deleteNote(noteId) {
 function openModal() {
   $("#areyousureModal").modal()
 }
-
